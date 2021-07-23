@@ -110,7 +110,7 @@ class Proyectil(pygame.sprite.Sprite):
 	def dibujar(self, superficie):
 		superficie.blit(self.imageProyectil, self.rect)
 
-"""CLASE QUE CONTROLA LAS NAVES INVASORAS"""
+"""CLASE QUE CONTROLA LA ANIMACION DE LAS NAVES INVASORAS"""
 class Invasor(pygame.sprite.Sprite):
 	def __init__(self, posx, posy, distancia, imagenUno, imagenDos):
 		pygame.sprite.Sprite.__init__(self)
@@ -157,13 +157,13 @@ class Invasor(pygame.sprite.Sprite):
 				if self.posImagen > len(self.listaImagenes)-1:
 					self.posImagen = 0
 
-	def __movimientos(self):
+	def __movimientos(self): #MOVIMIENTO DE LOS INVASORES
 		if self.contador < 3 : 
 			self.__movimientoLateral()
 		else:
 			self.__descenso()
 
-	def __descenso(self):
+	def __descenso(self): # DESCENSO DE LOS INVASORES
 		if self.Maxdescenso == self.rect.top:
 			self.contador = 0
 			self.Maxdescenso = self.rect.top + 40
@@ -181,11 +181,11 @@ class Invasor(pygame.sprite.Sprite):
 			if self.rect.left < self.limiteIzquierda:
 				self.derecha = True
 
-	def __ataque(self):
+	def __ataque(self): # ATAQUE DE LOS INVASORES
 		if (randint(0,300) < self.rangoDisparo):
 			self.__disparo()
 
-	def __disparo(self):
+	def __disparo(self): #PROYECTIL INVASOR
 		x,y = self.rect.center
 		miProyectil = Proyectil(x,y,"images/disparob.jpg", False)
 		self.listaDisparo.append(miProyectil)
